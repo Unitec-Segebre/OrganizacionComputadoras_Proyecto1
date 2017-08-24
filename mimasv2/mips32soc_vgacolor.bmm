@@ -1,0 +1,28 @@
+// BMM LOC annotation file for MIPS32 SOC on MimasV2 board
+// manually edited by Ivan Deras on July 21, 2017
+// Instruction Memory
+// Depth: 2048, Width: 32
+ADDRESS_SPACE cpu_inst_im_inst_mem_data RAMB18 WORD_ADDRESSING [0x0000:0x1FFF]
+	BUS_BLOCK
+		cpu_inst_im_inst/Mram_mem_data1 [0:8] PLACED = X0Y20;
+		cpu_inst_im_inst/Mram_mem_data2 [9:17] PLACED = X0Y14;
+		cpu_inst_im_inst/Mram_mem_data3 [18:26] PLACED = X0Y16;
+		cpu_inst_im_inst/Mram_mem_data4 [27:35] PLACED = X0Y18;
+	END_BUS_BLOCK;
+END_ADDRESS_SPACE;
+
+// Data Memory
+// Depth: 2048, Width: 32
+// We only set the first 1024 locations
+ADDRESS_SPACE cpu_inst_dm_inst_ram_data COMBINED [0x2000:0x2FFF]
+	ADDRESS_RANGE RAMB16
+		BUS_BLOCK
+			cpu_inst/dm_inst/Mram_ram_data1 [31:0] LOC = X1Y18;
+		END_BUS_BLOCK;
+	END_ADDRESS_RANGE;
+	ADDRESS_RANGE RAMB16
+		BUS_BLOCK
+			cpu_inst/dm_inst/Mram_ram_data2 [31:0] LOC = X1Y16;
+		END_BUS_BLOCK;
+	END_ADDRESS_RANGE;
+END_ADDRESS_SPACE;
